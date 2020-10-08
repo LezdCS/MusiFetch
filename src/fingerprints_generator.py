@@ -148,8 +148,8 @@ hashes = spectrogram_and_peaks(file)
 
 
 async def create():
-    conn = await asyncpg.connect(user='postgres', password='LezdSql39',
-                                 database='MusiFetch', port="5433")
+    conn = await asyncpg.connect(user='postgres', password='MusiFetch',
+                                 database='MusiFetch', port="5432")
     new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", file)
 
     last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
