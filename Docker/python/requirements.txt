@@ -1,0 +1,9 @@
+Cython
+ffmpeg
+matplotlib
+numpy
+asyncpg
+asyncio
+scipy
+pydub
+youtube_dl
