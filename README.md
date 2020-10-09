@@ -5,7 +5,7 @@ Pour utiliser le programme il faut utiliser [docker](https://www.docker.com/)
 $ docker-compose build
 $ docker-compose up -d
 
-# lancer les containers
+# lancer le container python
 $ docker-compose run python /bin/bash
 
 
