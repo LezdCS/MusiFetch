@@ -1,5 +1,5 @@
 # MusiFetch
-Pour utiliser le programme il faut utiliser [docker](https://www.docker.com/)
+Pour utiliser le programme il faut utiliser <a href="https://www.docker.com/" target="_blank">docker</a>
 ```markdown
 # Créer et initier les containers
 $ docker-compose build
