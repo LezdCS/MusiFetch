@@ -15,6 +15,7 @@ $ psql -h db -U postgres MusiFetch
 
 # afficher les tables
 $ \dt
+>
 MusiFetch=# \dt
             List of relations
  Schema |     Name     | Type  |  Owner
