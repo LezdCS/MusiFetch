@@ -8,10 +8,12 @@ $ docker-compose up -d
 # lancer le container python
 $ docker-compose run python /bin/bash
 
+# lancer le programme
+$ cd src
+$ python fingerprints_generator.py find:create
 
 # se connecter à la bdd
-$ psql -h db -U postgres MusiFetch
->MDP PAR DEFAUT : MusiFetch
+$ export PGPASSWORD='MusiFetch'; psql -h db -U postgres MusiFetch
 
 # afficher les tables
 $ \dt
