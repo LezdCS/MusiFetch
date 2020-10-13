@@ -24,10 +24,7 @@ from typing import List, Tuple
 # bdd dependecies
 import asyncpg
 import asyncio
-
-
-async def create_db_pool():
-    pg_con = await asyncpg.create_pool(database="PTUT", user="postgres", password="LezdSql39")
+import sys
 
 
 def download_ytb(url, time_start=None, time_end=None):
@@ -142,7 +139,7 @@ def generate_hashes(peaks: List[Tuple[int, int]], fan_value: int = 5) -> List[Tu
     return hashes
 
 
-file = download_ytb("https://www.youtube.com/watch?v=5Psm7n4nhwk", 0, 2)
+file = download_ytb("https://www.youtube.com/watch?v=5Psm7n4nhwk", 0, 6)
 
 hashes = spectrogram_and_peaks(file)
 
@@ -150,15 +147,35 @@ hashes = spectrogram_and_peaks(file)
 async def create():
     conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                  database='MusiFetch', port="5432", host="db")
-    new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", file)
 
-    last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
+    music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", file)
+    if music is None:
+        new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", file)
 
-    print(last_id)
-    for hashe in hashes:
-        value = await conn.execute("insert into fingerprints(hashe,id_music) values($1,$2)", hashe[0], last_id)
+        last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
+
+        print(last_id)
+        for hashe in hashes:
+            value = await conn.execute("INSERT INTO fingerprints(hashe,id_music) VALUES($1,$2)", hashe[0], last_id)
+    else:
+        print("this music already exist in database")
     await conn.close()
 
 
+async def find():
+    conn = await asyncpg.connect(user='postgres', password='MusiFetch',
+                                 database='MusiFetch', port="5432", host="db")
+    occurs = 0
+    print(len(hashes))
+    for hashe in hashes:
+        founds = await conn.fetchrow("SELECT id_music FROM fingerprints WHERE hashe = $1", hashe[0])
+        if founds is not None:
+            occurs += 1
+    print(occurs)
+
+
 loop = asyncio.get_event_loop()
-loop.run_until_complete(create())
+if sys.argv[1] == "create":
+    loop.run_until_complete(create())
+elif sys.argv[1] == "find":
+    loop.run_until_complete(find())
