@@ -139,11 +139,6 @@ def generate_hashes(peaks: List[Tuple[int, int]], fan_value: int = 5) -> List[Tu
     return hashes
 
 
-file = download_ytb("https://www.youtube.com/watch?v=5Psm7n4nhwk", 0, 6)
-
-hashes = spectrogram_and_peaks(file)
-
-
 async def create():
     conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                  database='MusiFetch', port="5432", host="db")
@@ -165,14 +160,24 @@ async def create():
 async def find():
     conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                  database='MusiFetch', port="5432", host="db")
-    occurs = 0
-    print(len(hashes))
+
+    occuring = {}
+    print("Nombre de hash du son analysé : ", len(hashes))
     for hashe in hashes:
         founds = await conn.fetchrow("SELECT id_music FROM fingerprints WHERE hashe = $1", hashe[0])
         if founds is not None:
-            occurs += 1
-    print(occurs)
+            if not founds['id_music'] in occuring:
+                occuring[founds['id_music']] = 1
+            else:
+                occuring[founds['id_music']] = occuring[founds['id_music']] + 1
 
+    print(occuring)
+
+
+# sys.argv[2]
+file = download_ytb("https://www.youtube.com/watch?v=5Psm7n4nhwk", 0, 12)
+
+hashes = spectrogram_and_peaks(file)
 
 loop = asyncio.get_event_loop()
 if sys.argv[1] == "create":
