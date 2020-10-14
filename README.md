@@ -27,7 +27,7 @@ MusiFetch=# \dt
 (2 rows)
 
 
-# stopper le container
+# stopper les containers
 $ docker-compose stop
 
 # supprimer les containers
