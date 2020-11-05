@@ -99,7 +99,7 @@ def spectrogram_and_peaks(file_path, show_spectrogram=False):
 
     local_maxima = list(zip(freqs_filter, times_filter))
 
-    if (show_spectrogram):
+    if show_spectrogram:
         fig, ax = plt.subplots()
         ax.imshow(arr2D)
         ax.scatter(times_filter, freqs_filter)
@@ -164,6 +164,7 @@ async def find():
     occuring = {}
     print("Nombre de hash du son analysé : ", len(hashes))
     for hashe in hashes:
+        print(hashes.index(hashe))
         founds = await conn.fetchrow("SELECT id_music FROM fingerprints WHERE hashe = $1", hashe[0])
         if founds is not None:
             if not founds['id_music'] in occuring:
@@ -175,7 +176,7 @@ async def find():
 
 
 # sys.argv[2]
-file = download_ytb("https://www.youtube.com/watch?v=5Psm7n4nhwk", 0, 12)
+file = download_ytb("https://www.youtube.com/watch?v=f4sbCWnL3FU")
 
 hashes = spectrogram_and_peaks(file)
 
