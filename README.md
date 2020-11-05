@@ -5,7 +5,7 @@ Pour utiliser le programme il faut utiliser [docker](https://www.docker.com/)
 $ docker-compose build
 $ docker-compose up -d
 
-# lancer le container python
+# lancer les containers et rentrer dans le shell python
 $ docker-compose run python /bin/bash
 
 # lancer le programme
@@ -27,7 +27,10 @@ MusiFetch=# \dt
 (2 rows)
 
 
-# tout éteindre
+# stopper les containers
+$ docker-compose stop
+
+# supprimer les containers
 $ docker-compose down
 ```
 
