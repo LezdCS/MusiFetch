@@ -1,3 +1,111 @@
-h1 {
-    color: red;
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    margin: 0;
+	background-color: #ebd6da;
+}
+
+.high-container {
+    background-color: #bd7783;
+    height: 375px;
+}
+
+.header-buttons {
+    padding: 10px 0 0px 0;
+    text-align: right;
+}
+
+.bt-register, .bt-login {
+	box-shadow: 0 3px 3px 0 #927b7f;
+	background-color: white;
+	border-radius: 30px;
+	border: 1px solid #805280;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: #805280;
+	font-size: 16px;
+	padding: 10px 15px;
+}
+
+.bt-register:hover, .bt-login:hover {
+	box-shadow: 0 0px 0px 0 #927b7f;
+	background-color: #805280;
+	border-radius: 30px;
+	border: 1px solid white;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	padding: 10px 15px;
+}
+
+.bt-register {
+    margin-right: 25px;
+}
+
+.bt-login {
+    margin-right: 30px;
+}
+
+.title {
+    color: #e7cede;
+    font-weight: normal;
+	font-size: 45px;
+	text-align: center;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.subtitle {
+	color: #73455a;
+	font-weight: normal;
+	font-size: 22px;
+	text-align: center;
+	margin-top: -20px;
+	margin-bottom: 0;
+}
+
+.join-community {
+	color: #72445a;
+	font-weight: normal;
+	font-size: 28px;
+	text-align: center;
+	margin-top: 0;
+	padding-top: 90px;
+}
+
+.now {
+	font-weight: bold;
+}
+
+.join-icons {
+	padding-top: 50px;
+	text-align: center;
+}
+
+.icon-share, .icon-save, .icon-help {
+	width: 60px;
+	height: 60px;
+}
+.icons {
+	display: inline-block;
+	position: relative;
+}
+
+.share {
+	left: -300px;
+}
+
+.help {
+	right: -300px;
+}
+
+.icon-text {
+	color: #72445a;
+	font-size: 18px;
+	font-weight: bold;
 }

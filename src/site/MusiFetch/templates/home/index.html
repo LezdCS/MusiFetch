@@ -5,8 +5,33 @@
     <meta charset="UTF-8">
     <title>MusiFetch</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home/style.css' %}">
+    <link rel="icon" href="{% static 'img/favicon.png'%}">
 </head>
 <body>
-    <h1>Site MusiFetch</h1>
+    <div class="high-container">
+        <div class="header-buttons">
+            <a href="#" class="bt-register">S'inscrire</a>
+            <a href="#" class="bt-login">Se connecter</a>
+        </div>
+        <h1 class="title">MusiFetch</h1>
+        <h2 class="subtitle">L'outil que vous avez toujours cherché</h2>
+    </div>
+    <div class="low-container">
+        <h3 class="join-community">Rejoignez la communauté <span class="now">maintenant</span></h3>
+        <div class="join-icons">
+            <div class="icons share">
+                <img src="{% static 'img/home/share.png' %}" class="icon-share">
+                <p class="icon-text">Partagez</p>
+            </div>
+            <div class="icons save">
+                <img src="{% static 'img/home/save.png' %}" class="icon-save">
+                <p class="icon-text">Sauvegardez</p>
+            </div>
+            <div class="icons help">
+                <img src="{% static 'img/home/help.png' %}" class="icon-help">
+                <p class="icon-text">Aidez</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
