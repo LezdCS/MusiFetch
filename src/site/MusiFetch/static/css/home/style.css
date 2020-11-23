@@ -7,13 +7,17 @@ body {
 	background-color: #ebd6da;
 }
 
+.container {
+	height: 100%;
+}
+
 .high-container {
     background-color: #bd7783;
-    height: 375px;
+    height: 360px;
 }
 
 .header-buttons {
-    padding: 10px 0 0px 0;
+    padding: 10px 0 0 0;
     text-align: right;
 }
 
@@ -31,8 +35,8 @@ body {
 }
 
 .bt-register:hover, .bt-login:hover {
-	box-shadow: 0 0px 0px 0 #927b7f;
-	background-color: #805280;
+	box-shadow: 0 0 0 0 #927b7f;
+	background-color: #bd7783;
 	border-radius: 30px;
 	border: 1px solid white;
 	display: inline-block;
@@ -75,7 +79,7 @@ body {
 	font-size: 28px;
 	text-align: center;
 	margin-top: 0;
-	padding-top: 90px;
+	padding-top: 100px;
 }
 
 .now {
