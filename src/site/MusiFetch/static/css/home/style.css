@@ -93,15 +93,16 @@ body {
 }
 .icons {
 	display: inline-block;
-	position: relative;
 }
 
 .share {
-	left: -300px;
+	position: absolute;
+	left: 350px;
 }
 
 .help {
-	right: -300px;
+	position: absolute;
+	right: 350px;
 }
 
 .icon-text {
