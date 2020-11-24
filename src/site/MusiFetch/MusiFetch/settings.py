@@ -16,9 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'fyk^zem#qj+b$l4$tb-^8(y)=pz12lc*7na&^t+_f)@a3vz3+v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -63,17 +63,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'musifetch.wsgi.application'
 
 
-try:
-    from local_settings import *
-
-except ImportError:
-    pass
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if DEBUG is False:
+try:
+    from .local_settings import *
+except ImportError:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -124,3 +120,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+
