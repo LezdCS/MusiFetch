@@ -18,7 +18,7 @@ SECRET_KEY = 'fyk^zem#qj+b$l4$tb-^8(y)=pz12lc*7na&^t+_f)@a3vz3+v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -74,7 +74,6 @@ except ImportError:
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 if DEBUG is False:
-    ALLOWED_HOSTS = ['*']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
