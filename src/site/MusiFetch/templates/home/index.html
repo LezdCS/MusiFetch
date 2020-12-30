@@ -5,18 +5,23 @@
     <meta charset="UTF-8">
     <title>MusiFetch</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
     <link rel="icon" href="{% static 'img/favicon.png'%}">
 </head>
-<body>
-    <div class="container">
+<body style="margin: 0px; background-color: var(--color-pink1);">
+    <div class="global-container">
         <div class="high-container">
             <div class="header-buttons">
-                <a href="#" class="bt-register">S'inscrire</a>
-                <a href="#" class="bt-login">Se connecter</a>
+                <a href="#" class="bt-register">Inscription</a>
+                <a href="#" class="bt-login">Connexion</a>
             </div>
             <h1 class="title">MusiFetch</h1>
             <h2 class="subtitle">L'outil que vous avez toujours cherché</h2>
         </div>
+        <form class="search-bar">
+            <input class="input-search" type="text" placeholder="Insérez un lien ici" onclick="this.placeholder='';">
+        </form>
         <div class="low-container">
             <h3 class="join-community">Rejoignez la communauté <span class="now">maintenant</span></h3>
             <div class="join-icons">

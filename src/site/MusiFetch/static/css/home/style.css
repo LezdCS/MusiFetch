@@ -1,18 +1,12 @@
-* {
-    font-family: 'Rubik', sans-serif;
-}
+@import url("style_base.css");
 
-body {
-    margin: 0;
-	background-color: #ebd6da;
-}
-
-.container {
+.global-container {
 	height: 100%;
 }
 
 .high-container {
-    background-color: #bd7783;
+    background-color: var(--color-pink2);
+	box-shadow: 0 1.5px 1.5px 0 #927b7f;
     height: 360px;
 }
 
@@ -25,18 +19,18 @@ body {
 	box-shadow: 0 3px 3px 0 #927b7f;
 	background-color: white;
 	border-radius: 30px;
-	border: 1px solid #805280;
+	border: 1px solid var(--color-purple-bt);
 	display: inline-block;
 	cursor: pointer;
 	text-decoration: none;
-	color: #805280;
+	color: var(--color-purple-bt);
 	font-size: 16px;
 	padding: 10px 15px;
 }
 
 .bt-register:hover, .bt-login:hover {
 	box-shadow: 0 0 0 0 #927b7f;
-	background-color: #bd7783;
+	background-color: var(--color-pink2);
 	border-radius: 30px;
 	border: 1px solid white;
 	display: inline-block;
@@ -56,7 +50,7 @@ body {
 }
 
 .title {
-    color: #e7cede;
+    color: var(--color-pink1);
     font-weight: normal;
 	font-size: 45px;
 	text-align: center;
@@ -65,7 +59,7 @@ body {
 }
 
 .subtitle {
-	color: #73455a;
+	color: var(--color-purple-text);
 	font-weight: normal;
 	font-size: 22px;
 	text-align: center;
@@ -74,7 +68,7 @@ body {
 }
 
 .join-community {
-	color: #72445a;
+	color: var(--color-purple-text);
 	font-weight: normal;
 	font-size: 28px;
 	text-align: center;
@@ -110,7 +104,31 @@ body {
 }
 
 .icon-text {
-	color: #72445a;
+	color: var(--color-purple-text);
 	font-size: 18px;
 	font-weight: bold;
+}
+
+.search-bar {
+	position: relative;
+	top: -30px;
+	text-align: center;
+}
+
+.input-search {
+	padding-left: 40px;
+	width: 750px;
+	height: 60px;
+	font-size: 20px;
+	border-width: 1px;
+	border-color: var(--color-purple-bt);
+	background-color: white;
+	color: #000000;
+	border-style: solid;
+	border-radius: 50px;
+	box-shadow: 0px 0px 5px rgba(66,66,66,.75);
+}
+
+.input-search:focus {
+	outline: none;
 }
