@@ -3,7 +3,8 @@ Pour utiliser le programme il faut utiliser [docker](https://www.docker.com/)
 ```markdown
 # Créer et initier les containers
 $ docker-compose build
-$ docker-compose up -d
+$ docker-compose up db
+$ docker-compose up web
 
 # lancer les containers et rentrer dans le shell python
 $ docker-compose run python /bin/bash
