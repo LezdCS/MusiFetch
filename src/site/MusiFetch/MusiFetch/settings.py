@@ -18,7 +18,7 @@ SECRET_KEY = 'fyk^zem#qj+b$l4$tb-^8(y)=pz12lc*7na&^t+_f)@a3vz3+v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -73,10 +73,11 @@ except ImportError:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'musifetch_website',
+            'NAME': 'MusiFetch',
             'USER': 'postgres',
-            'PASSWORD': 'LezdSql39',
-            'HOST': 'localhost',
+            'PASSWORD': 'MusiFetch',
+            'HOST': 'db',
+            'PORT': 5432,
         }
     }
 

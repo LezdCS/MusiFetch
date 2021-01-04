@@ -19,8 +19,10 @@
             <h1 class="title">MusiFetch</h1>
             <h2 class="subtitle">L'outil que vous avez toujours cherché</h2>
         </div>
-        <form class="search-bar">
-            <input class="input-search" type="text" placeholder="Insérez un lien ici" onclick="this.placeholder='';">
+        <form class="search-bar" action="/find/" method="post">
+            {% csrf_token %}
+            <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insérez un lien ici" onclick="this.placeholder='';">
+            <input type="submit" value="OK">
         </form>
         <div class="low-container">
             <h3 class="join-community">Rejoignez la communauté <span class="now">maintenant</span></h3>
