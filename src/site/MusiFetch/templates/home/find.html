@@ -1,17 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MusiFetch | Recherche</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/find.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <link rel="icon" href="{% static 'img/favicon.png'%}">
 </head>
-<body>
-{{ ytblink }}
-<br>
-{% for key,value in occurences.items %}
-    <hr>
-    Titre : {{ value.title }}
-    <br>
-    Ittérations : {{ value.itterations }}
-{% endfor %}
+<body style="margin: 0px; background-color: var(--color-pink1);">
+    <div class="global-container">
+        <div class="high-container">
+            <div class="musifetch">
+                <a href="/home/" class="title">MusiFetch</a>
+            </div>
+            <div class="header-buttons">
+                <a href="#" class="bt-register">Inscription</a>
+                <a href="#" class="bt-login">Connexion</a>
+            </div>
+            <form class="search-bar" action="/find/" method="post">
+                {% csrf_token %}
+                <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insérez un nouveau lien ici" onclick="this.placeholder='';">
+                <button type="submit" class="loupe"><img src="{% static 'img/home/loupe.png' %}" class="loupe-img"></button>
+            </form>
+        </div>
+        <div class="low-container">
+            <h2 class="subtitle">Notre application a trouvé des musiques pour vous !</h2>
+            <div class="results">
+                <hr>
+                {% for key,value in occurences.items %}
+                    <h3 class="label">TITRE</h3>
+                    <span class="result-set">{{ value.title }}</span>
+                    <br>
+                    <h3 class="label">NOMBRE D'ITERATIONS</h3>
+                    <span class="result-set">{{ value.itterations }}</span>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </body>
 </html>
