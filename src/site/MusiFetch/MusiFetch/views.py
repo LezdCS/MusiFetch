@@ -10,18 +10,19 @@ def find(request):
     if request.method == 'POST':
         ytb_link = request.POST['video_link']
 
-        algo = fingerprints_generator.Algo()
-        algo.choice("find", ytb_link)
+        try:
+            algo = fingerprints_generator.Algo()
+            algo.choice("find", ytb_link)
 
-        return render(request, 'home/find.html', {'ytblink': ytb_link, 'occurences': algo.occurences})
+            return render(request, 'home/find.twig', {'ytblink': ytb_link, 'occurences': algo.occurences})
+        except:
+            pass
 
     return redirect('/home')
 
 
 def create(request):
-
     if request.method == 'GET':
-
         return render(request, 'home/create.html', {})
 
     if request.method == 'POST':
