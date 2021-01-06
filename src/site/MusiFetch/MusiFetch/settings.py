@@ -18,7 +18,7 @@ SECRET_KEY = 'fyk^zem#qj+b$l4$tb-^8(y)=pz12lc*7na&^t+_f)@a3vz3+v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -63,18 +63,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'musifetch.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'base_musifetch_website',
-        'USER': 'arnaud',
-        'PASSWORD': 'arnaud',
-        'HOST': 'localhost',
+try:
+    from .local_settings import *
+except ImportError:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'MusiFetch',
+            'USER': 'postgres',
+            'PASSWORD': 'MusiFetch',
+            'HOST': 'db',
+            'PORT': 5432,
+        }
     }
-}
 
 
 # Password validation
@@ -116,3 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+

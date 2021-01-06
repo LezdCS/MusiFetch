@@ -3,14 +3,15 @@ Pour utiliser le programme il faut utiliser [docker](https://www.docker.com/)
 ```markdown
 # Créer et initier les containers
 $ docker-compose build
-$ docker-compose up -d
+$ docker-compose up db
+$ docker-compose up web
 
 # lancer les containers et rentrer dans le shell python
 $ docker-compose run python /bin/bash
 
 # lancer le programme
 $ cd src
-$ python fingerprints_generator.py find:create
+$ python fingerprints_generator.py YOUTUBE_URL find:create
 
 # se connecter à la bdd
 $ export PGPASSWORD='MusiFetch'; psql -h db -U postgres MusiFetch

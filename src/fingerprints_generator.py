@@ -176,12 +176,12 @@ async def find():
 
 
 # sys.argv[2]
-file = download_ytb("https://www.youtube.com/watch?v=f4sbCWnL3FU")
+file = download_ytb(sys.argv[1])
 
 hashes = spectrogram_and_peaks(file)
 
 loop = asyncio.get_event_loop()
-if sys.argv[1] == "create":
+if sys.argv[2] == "create":
     loop.run_until_complete(create())
-elif sys.argv[1] == "find":
+elif sys.argv[2] == "find":
     loop.run_until_complete(find())
