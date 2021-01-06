@@ -29,14 +29,17 @@ import sys
 
 class Algo:
 
-    def __init__(self, choix, url):
+    def __init__(self):
+        self.occurences = {}
+        self.video_title = ""
+
+    def choice(self, choix, url):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         if choix == "create":
-            self.occurences = loop.run_until_complete(self.create(self.download_ytb(url)))
+            loop.run_until_complete(self.create(self.download_ytb(url)))
         elif choix == "find":
-            self.occurences = loop.run_until_complete(self.find(self.download_ytb(url)))
-
+            loop.run_until_complete(self.find(self.download_ytb(url)))
 
     def download_ytb(self, url, time_start=None, time_end=None):
         ydl_opts = {
@@ -49,9 +52,9 @@ class Algo:
         }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
-            video_title = info_dict.get('title', None)
+            self.video_title = info_dict.get('title', None)
 
-        sound = AudioSegment.from_wav(video_title + '.wav')
+        sound = AudioSegment.from_wav(self.video_title + '.wav')
         sound = sound.set_channels(1)
         if time_start is not None and time_end is not None:
             t1 = time_start * 1000  # Works in milliseconds
@@ -60,9 +63,9 @@ class Algo:
                 sound = sound[t1:t2]
             else:
                 print("Timecode mauvais, veuillez saisir des temps en secondes corrects")
-        sound.export(video_title + '.wav', format="wav")
+        sound.export(self.video_title + '.wav', format="wav")
 
-        return self.spectrogram_and_peaks(video_title + '.wav')
+        return self.spectrogram_and_peaks(self.video_title + '.wav')
 
     def spectrogram_and_peaks(self, file_path, show_spectrogram=False):
         sample_rate, samples = wavfile.read(file_path)
@@ -151,13 +154,13 @@ class Algo:
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                      database='MusiFetch', port="5432", host="db")
 
-        music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", file)
+        music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title+".wav")
         if music is None:
-            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", file)
+            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title+".wav")
 
             last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
 
-            print(last_id)
+            # print(last_id)
             for hashe in hashes:
                 value = await conn.execute("INSERT INTO fingerprints(hashe,id_music) VALUES($1,$2)", hashe[0], last_id)
         else:
@@ -170,15 +173,18 @@ class Algo:
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                      database='MusiFetch', port="5432", host="db")
 
+        # print("Nombre de hash du son analysé : ", len(hashes))
         occuring = {}
-        print("Nombre de hash du son analysé : ", len(hashes))
         for hashe in hashes:
-            print(hashes.index(hashe))
-            founds = await conn.fetchrow("SELECT id_music FROM fingerprints WHERE hashe = $1", hashe[0])
+            # print(hashes.index(hashe))
+            founds = await conn.fetchrow("SELECT fingerprints.id_music, music.titre FROM fingerprints INNER JOIN music ON fingerprints.id_music"
+                                         "= music.id WHERE hashe = $1", hashe[0])
             if founds is not None:
                 if not founds['id_music'] in occuring:
-                    occuring[founds['id_music']] = 1
+                    occuring[founds['id_music']] = {}
+                    occuring[founds['id_music']]['title'] = founds['titre']
+                    occuring[founds['id_music']]['itterations'] = 1
                 else:
-                    occuring[founds['id_music']] = occuring[founds['id_music']] + 1
-
-        return occuring
+                    occuring[founds['id_music']]['itterations'] += 1
+        await conn.close()
+        self.occurences = occuring

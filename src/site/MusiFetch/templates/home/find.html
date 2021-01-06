@@ -6,5 +6,12 @@
 </head>
 <body>
 {{ ytblink }}
+<br>
+{% for key,value in occurences.items %}
+    <hr>
+    Titre : {{ value.title }}
+    <br>
+    Ittérations : {{ value.itterations }}
+{% endfor %}
 </body>
 </html>
