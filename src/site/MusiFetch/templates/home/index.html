@@ -12,17 +12,17 @@
 <body style="margin: 0px; background-color: var(--color-pink1);">
     <div class="global-container">
         <div class="high-container">
-            <div class="header-buttons">
-                <a href="#" class="bt-register">Inscription</a>
-                <a href="#" class="bt-login">Connexion</a>
-            </div>
+                <div class="header-buttons">
+                    <a href="#" class="bt-register">Inscription</a>
+                    <a href="#" class="bt-login">Connexion</a>
+                </div>
             <h1 class="title">MusiFetch</h1>
             <h2 class="subtitle">L'outil que vous avez toujours cherché</h2>
         </div>
         <form class="search-bar" action="/find/" method="post">
             {% csrf_token %}
             <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insérez un lien ici" onclick="this.placeholder='';">
-            <input type="submit" value="OK">
+            <button type="submit" class="loupe"><img src="{% static 'img/home/loupe_index.png' %}" class="loupe-img"></button>
         </form>
         <div class="low-container">
             <h3 class="join-community">Rejoignez la communauté <span class="now">maintenant</span></h3>
