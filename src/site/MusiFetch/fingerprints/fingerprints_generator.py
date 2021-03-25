@@ -157,14 +157,20 @@ class Algo:
         music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title)
         if music is None:
             new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title)
-            last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
+            last_id_music = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
+
+            last_id_fingerprint = await conn.fetchval("SELECT id FROM fingerprints order by id DESC LIMIT 1")
+            if last_id_fingerprint is None:
+                last_id_fingerprint = 0
 
             for i in range(0, len(hashes)):
                 hashes[i] = list(hashes[i])
-                hashes[i][1] = last_id
+                hashes[i][1] = last_id_music
+                last_id_fingerprint += 1
+                hashes[i].append(last_id_fingerprint)
                 hashes[i] = tuple(hashes[i])
 
-            await conn.copy_records_to_table('fingerprints', records=hashes)
+            await conn.copy_records_to_table('fingerprints', records=hashes, columns=('hashe', 'id_music', 'id'))
             await conn.close()
 
         else:
