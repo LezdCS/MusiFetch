@@ -28,6 +28,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.fingerprints (
+                                     id integer NOT NULL,
                                      hashe character varying,
                                      id_music integer
 );
@@ -96,6 +97,7 @@ ALTER TABLE ONLY public.music
 --
 
 ALTER TABLE ONLY public.fingerprints
+    ADD CONSTRAINT fingerprints_pk PRIMARY KEY (id);
     ADD CONSTRAINT fingerprints_music_id_fk FOREIGN KEY (id_music) REFERENCES public.music(id);
 
 
