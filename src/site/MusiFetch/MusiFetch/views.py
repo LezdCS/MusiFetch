@@ -6,6 +6,10 @@ sys.path.append("..")  # Adds higher directory to python modules path.
 from fingerprints import fingerprints_generator
 
 
+def register(request):
+    return render(request, 'home/register.html')
+
+
 def find(request):
     if request.method == 'POST':
         ytb_link = request.POST['video_link']
