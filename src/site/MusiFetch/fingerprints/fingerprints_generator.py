@@ -154,20 +154,23 @@ class Algo:
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                      database='MusiFetch', port="5432", host="db")
 
-        music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title+".wav")
+        music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title)
         if music is None:
-            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title+".wav")
-
+            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title)
             last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
 
-            # print(last_id)
-            for hashe in hashes:
-                value = await conn.execute("INSERT INTO fingerprints(hashe,id_music) VALUES($1,$2)", hashe[0], last_id)
-        else:
-            print("this music already exist in database")
-        await conn.close()
+            for i in range(0, len(hashes)):
+                hashes[i] = list(hashes[i])
+                hashes[i][1] = last_id
+                hashes[i] = tuple(hashes[i])
 
-        return 0
+            await conn.copy_records_to_table('fingerprints', records=hashes)
+            await conn.close()
+
+        else:
+            return False
+
+        return True
 
     async def find(self, hashes):
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
@@ -177,8 +180,9 @@ class Algo:
         occuring = {}
         for hashe in hashes:
             # print(hashes.index(hashe))
-            founds = await conn.fetchrow("SELECT fingerprints.id_music, music.titre FROM fingerprints INNER JOIN music ON fingerprints.id_music"
-                                         "= music.id WHERE hashe = $1", hashe[0])
+            founds = await conn.fetchrow(
+                "SELECT fingerprints.id_music, music.titre FROM fingerprints INNER JOIN music ON fingerprints.id_music"
+                "= music.id WHERE hashe = $1", hashe[0])
             if founds is not None:
                 if not founds['id_music'] in occuring:
                     occuring[founds['id_music']] = {}

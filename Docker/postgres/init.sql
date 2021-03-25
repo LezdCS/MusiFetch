@@ -105,4 +105,4 @@ ALTER TABLE ONLY public.fingerprints
 -- PostgreSQL database dump complete
 --
 
-CREATE INDEX hashe_index ON fingerprints (hashe);
+CREATE INDEX hashe_index ON public.fingerprints (hashe);
