@@ -57,7 +57,7 @@ class Algo:
         playlist_id = query["list"][0]
 
         print(f'get all playlist items links from {playlist_id}')
-        youtube = googleapiclient.discovery.build("youtube", "v3", developerKey = "AIzaSyCwVCEE6CBeeT9D88PymiK3dPD1Slsp66U")
+        youtube = googleapiclient.discovery.build("youtube", "v3", developerKey = "AIzaSyDtljM_jIhucfzlYDHcY0Rzkfy95Kn0beU")
 
         request = youtube.playlistItems().list(
             part = "snippet",
