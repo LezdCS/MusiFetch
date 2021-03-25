@@ -154,25 +154,23 @@ class Algo:
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                      database='MusiFetch', port="5432", host="db")
 
-        music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title + ".wav")
+        music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title)
         if music is None:
-            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title + ".wav")
-
+            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title)
             last_id = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
 
-            test = []
-            # print(last_id)
-            for hashe in hashes:
-                test.append((hashe[0], last_id))
-                # value = await conn.execute("INSERT INTO fingerprints(hashe,id_music) VALUES($1,$2)", hashe[0], last_id)
+            for i in range(0, len(hashes)):
+                hashes[i] = list(hashes[i])
+                hashes[i][1] = last_id
+                hashes[i] = tuple(hashes[i])
 
-            statement = "INSERT INTO fingerprints(hashe,id_music) VALUES($1,$2)"
-            await conn.executemany(statement, test)
+            await conn.copy_records_to_table('fingerprints', records=hashes)
+            await conn.close()
+
         else:
-            print("this music already exist in database")
-        await conn.close()
+            return False
 
-        return 0
+        return True
 
     async def find(self, hashes):
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
