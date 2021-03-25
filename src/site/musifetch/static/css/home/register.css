@@ -1,0 +1,66 @@
+@import url("style_base.css");
+
+.musifetch {
+    background-color: var(--color-pink2);
+    height: 750px;
+}
+
+.title {
+    color: var(--color-pink1);
+    font-weight: normal;
+	font-size: 75px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.subtitle {
+	color: var(--color-purple-text);
+	font-weight: normal;
+	font-size: 32px;
+	margin-top: -20px;
+}
+
+.form {
+	background-color: var(--color-pink1)
+}
+
+.input {
+	background-color: white;
+	border: 2px solid var(--color-purple-bt);
+	display:inline-block;
+	color: var(--color-purple-text);
+	font-size: 18px;
+	width: 360px;
+	height: 70px;
+	margin-top: 50px;
+	text-decoration:none;
+	padding: 0 40px 0 40px;
+}
+
+.input:hover {
+	box-shadow: 0 0 0 0 #927b7f;
+	background-color: transparent;
+	border:3px solid white;
+	color: white;
+}
+
+.input:focus {
+	box-shadow: 0 0 0 0 #927b7f;
+	background-color: transparent;
+	border:3px solid var(--color-pink2);
+	color: var(--color-pink2);
+}
+
+.valid-registration {
+	background-color: var(--color-purple-text);
+	border: 0 solid var(--color-purple-bt);
+	display:inline-block;
+	cursor:pointer;
+	color: var(--color-pink1);
+	font-size: 40px;
+	width: 360px;
+	height: 70px;
+	margin-top: 50px;
+	text-decoration:none;
+	padding: 0 40px 0 40px;
+}

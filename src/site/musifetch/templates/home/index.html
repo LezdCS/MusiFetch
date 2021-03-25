@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MusiFetch</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/index.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'img/favicon.png'%}">
+</head>
+<body class="full-page">
+    <div class="container-fluid high-page">
+        <header>
+            <div class="header-buttons">
+                <a href="/register/" class="bt-register mr-3">Register</a>
+                <a href="#" class="bt-login mr-2">Login</a>
+            </div>
+        </header>
+        <div class="container text-center pt-3">
+            <h1 class="title">MusiFetch</h1>
+            <h2 class="subtitle">The tool you ever looked for</h2>
+        </div>
+        <div class="container traitement text-center pt-3" id="traitement"></div>
+    </div>
+    <div class="container">
+        <form class="search-bar" action="/find/" method="post">
+            {% csrf_token %}
+            <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insérez un lien ici">
+            <button type="submit" class="loupe" onclick="traitement()"><img src="{% static 'img/home/loupe_index.png' %}" class="loupe-img"></button>
+        </form>
+    </div>
+    <div class="low-page">
+        <div class="container text-center pt-5">
+            <h3 class="join-community">Join the community <span class="now">now</span></h3>
+            <div class="join-icons">
+                <div class="icons share">
+                    <img src="{% static 'img/home/share.png' %}" class="icon-share">
+                    <p class="icon-text">Share</p>
+                </div>
+                <div class="icons save">
+                    <img src="{% static 'img/home/save.png' %}" class="icon-save">
+                    <p class="icon-text">Save</p>
+                </div>
+                <div class="icons help">
+                    <img src="{% static 'img/home/help.png' %}" class="icon-help">
+                    <p class="icon-text">Help</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/home/index.js' %}"></script>
+</html>

@@ -1,0 +1,137 @@
+@import url("style_base.css");
+
+hr {
+	width: 500px;
+	border-top: 20px solid black;
+}
+
+.global-container {
+	height: 100%;
+}
+
+.high-container {
+    background-color: var(--color-pink2);
+	box-shadow: 0 1.5px 1.5px 0 #927b7f;
+    height: 290px;
+}
+
+.musifetch {
+	text-align: left;
+	float: left;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+.title {
+    color: var(--color-pink1);
+    font-weight: normal;
+	font-size: 50px;
+}
+
+.title:hover {
+	text-decoration: none;
+	color: var(--color-pink1);
+}
+
+.header-buttons {
+    padding: 10px 0 0 0;
+	text-align: right;
+}
+
+.bt-register, .bt-login {
+	box-shadow: 0 3px 3px 0 #927b7f;
+	background-color: white;
+	border-radius: 30px;
+	border: 1px solid var(--color-purple-bt);
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--color-purple-bt);
+	font-size: 16px;
+	padding: 10px 15px;
+	text-align: right;
+	margin-top: 20px;
+}
+
+.bt-register:hover, .bt-login:hover {
+	box-shadow: 0 0 0 0 #927b7f;
+	background-color: var(--color-pink2);
+	border-radius: 30px;
+	border: 1px solid white;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	padding: 10px 15px;
+	text-align: right;
+}
+
+.bt-register {
+    margin-right: 25px;
+}
+
+.bt-login {
+    margin-right: 30px;
+}
+
+.search-bar {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.input-search {
+	padding-left: 40px;
+	width: 750px;
+	height: 60px;
+	font-size: 20px;
+	border-width: 1px;
+	border-color: var(--color-purple-bt);
+	background-color: white;
+	color: var(--color-purple-text);
+	border-style: solid;
+	border-radius: 50px;
+	box-shadow: 0 1.5px 1.5px 0 #927b7f;
+}
+
+.input-search:focus {
+	outline: none;
+}
+
+.subtitle {
+	color: var(--color-purple-text);
+	font-weight: normal;
+	font-size: 28px;
+	text-align: center;
+	margin: 50px;
+}
+
+.results {
+	text-align: center;
+}
+
+.label {
+	color: black;
+	font-weight: bold;
+	font-size: 30px;
+	margin: 15px;
+}
+
+.result-set {
+	color: var(--color-purple-text);
+	font-size: 20px;
+}
+
+.loupe {
+	border: none;
+	background: none;
+}
+
+.loupe-img {
+	width: 60px;
+	height: 60px;
+}
+
+.loupe:focus {
+	outline: none;
+}

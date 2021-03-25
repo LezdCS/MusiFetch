@@ -97,9 +97,11 @@ ALTER TABLE ONLY public.music
 --
 
 ALTER TABLE ONLY public.fingerprints
-    ADD CONSTRAINT fingerprints_pk PRIMARY KEY (id);
     ADD CONSTRAINT fingerprints_music_id_fk FOREIGN KEY (id_music) REFERENCES public.music(id);
 
+
+ALTER TABLE ONLY public.fingerprints
+    ADD CONSTRAINT fingerprints_pk PRIMARY KEY (id);
 
 -- Completed on 2020-10-08 10:31:25
 
@@ -108,3 +110,27 @@ ALTER TABLE ONLY public.fingerprints
 --
 
 CREATE INDEX hashe_index ON public.fingerprints (hashe);
+
+-- Table: public.buffer
+
+-- DROP TABLE public.buffer;
+
+CREATE TABLE public.buffer
+(
+    hashe character varying COLLATE pg_catalog."default",
+    id_music integer
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE public.buffer
+    OWNER to postgres;
+-- Index: buffer_hashe_hashe1_idx
+
+-- DROP INDEX public.buffer_hashe_hashe1_idx;
+
+CREATE INDEX buffer_hashe_hashe1_idx
+    ON public.buffer USING btree
+    (hashe COLLATE pg_catalog."default" ASC NULLS LAST)
+    INCLUDE(hashe)
+    TABLESPACE pg_default;
