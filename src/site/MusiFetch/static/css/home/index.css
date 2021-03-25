@@ -17,7 +17,7 @@
 	box-shadow: 0 3px 3px 0 #927b7f;
 	background-color: white;
 	border-radius: 30px;
-	border: 1px solid var(--color-purple-bt);
+	border: 2px solid var(--color-purple-bt);
 	display: inline-block;
 	cursor: pointer;
 	text-decoration: none;
@@ -31,7 +31,7 @@
 	box-shadow: 0 0 0 0 #927b7f;
 	background-color: var(--color-pink2);
 	border-radius: 30px;
-	border: 1px solid white;
+	border: 2px solid white;
 	display: inline-block;
 	cursor: pointer;
 	text-decoration: none;
@@ -66,7 +66,7 @@
 	width: 750px;
 	height: 60px;
 	font-size: 20px;
-	border-width: 1px;
+	border-width: 2px;
 	border-color: var(--color-purple-bt);
 	background-color: white;
 	color: var(--color-purple-text);
@@ -78,8 +78,6 @@
 .input-search:focus {
 	outline: none;
 }
-
-
 
 .loupe {
 	border: none;
