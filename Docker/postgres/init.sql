@@ -105,3 +105,9 @@ ALTER TABLE ONLY public.fingerprints
 -- PostgreSQL database dump complete
 --
 
+<<<<<<< Updated upstream
+=======
+CREATE INDEX hashe_index ON public.fingerprints (hashe);
+
+CREATE TABLE public.buffer (LIKE public.fingerprints INCLUDING ALL);
+>>>>>>> Stashed changes

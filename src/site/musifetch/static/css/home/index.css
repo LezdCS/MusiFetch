@@ -1,0 +1,141 @@
+@import url("style_base.css");
+
+.full-page {
+	background-color: var(--color-pink1);
+}
+
+.high-page {
+	background-color: var(--color-pink2);
+	height: 375px;
+}
+
+.header-buttons {
+	text-align: right;
+}
+
+.bt-register, .bt-login {
+	box-shadow: 0 3px 3px 0 #927b7f;
+	background-color: white;
+	border-radius: 30px;
+	border: 1px solid var(--color-purple-bt);
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--color-purple-bt);
+	font-size: 16px;
+	padding: 10px 15px;
+	margin-top: 20px;
+}
+
+.bt-register:hover, .bt-login:hover {
+	box-shadow: 0 0 0 0 #927b7f;
+	background-color: var(--color-pink2);
+	border-radius: 30px;
+	border: 1px solid white;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	padding: 10px 15px;
+}
+
+.title {
+    color: var(--color-pink1);
+    font-weight: normal;
+	font-size: 75px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.subtitle {
+	color: var(--color-purple-text);
+	font-weight: normal;
+	font-size: 32px;
+	margin-top: -20px;
+}
+
+.search-bar {
+	position: relative;
+	top: -30px;
+	text-align: center;
+}
+
+.input-search {
+	padding-left: 40px;
+	width: 750px;
+	height: 60px;
+	font-size: 20px;
+	border-width: 1px;
+	border-color: var(--color-purple-bt);
+	background-color: white;
+	color: var(--color-purple-text);
+	border-style: solid;
+	border-radius: 50px;
+	box-shadow: 0 1.5px 1.5px 0 #927b7f;
+}
+
+.input-search:focus {
+	outline: none;
+}
+
+
+
+.loupe {
+	border: none;
+	background: none;
+}
+
+.loupe-img {
+	width: 60px;
+	height: 60px;
+}
+
+.loupe:focus {
+	outline: none;
+}
+
+.join-community {
+	color: var(--color-purple-text);
+	font-weight: normal;
+	font-size: 40px;
+	margin-top: 0;
+}
+
+.now {
+	font-weight: bold;
+}
+
+.join-icons {
+	padding-top: 50px;
+	text-align: center;
+}
+
+.icon-share, .icon-save, .icon-help {
+	width: 60px;
+	height: 60px;
+}
+.icons {
+	display: inline-block;
+}
+
+.share {
+	position: absolute;
+	left: 350px;
+}
+
+.help {
+	position: absolute;
+	right: 350px;
+}
+
+.icon-text {
+	color: var(--color-purple-text);
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 15px;
+}
+
+.traitement {
+	font-size: 20px;
+}

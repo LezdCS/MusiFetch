@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form class="search-bar" action="/create/" method="post">
+    {% csrf_token %}
+    <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insérez un lien ici" onclick="this.placeholder='';">
+    <input type="submit" value="OK">
+</form>
+
+</body>
+</html>
