@@ -1,17 +1,15 @@
 @import url("style_base.css");
 
-.global-container {
-	height: 100%;
+.full-page {
+	background-color: var(--color-pink1);
 }
 
-.high-container {
-    background-color: var(--color-pink2);
-	box-shadow: 0 1.5px 1.5px 0 #927b7f;
-    height: 360px;
+.high-page {
+	background-color: var(--color-pink2);
+	height: 375px;
 }
 
 .header-buttons {
-    padding: 10px 0 0 0;
 	text-align: right;
 }
 
@@ -42,19 +40,10 @@
 	padding: 10px 15px;
 }
 
-.bt-register {
-    margin-right: 25px;
-}
-
-.bt-login {
-    margin-right: 30px;
-}
-
 .title {
     color: var(--color-pink1);
     font-weight: normal;
-	font-size: 65px;
-	text-align: center;
+	font-size: 75px;
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
@@ -62,53 +51,8 @@
 .subtitle {
 	color: var(--color-purple-text);
 	font-weight: normal;
-	font-size: 22px;
-	text-align: center;
+	font-size: 32px;
 	margin-top: -20px;
-	margin-bottom: 0;
-}
-
-.join-community {
-	color: var(--color-purple-text);
-	font-weight: normal;
-	font-size: 28px;
-	text-align: center;
-	margin-top: 0;
-	padding-top: 100px;
-}
-
-.now {
-	font-weight: bold;
-}
-
-.join-icons {
-	padding-top: 50px;
-	text-align: center;
-}
-
-.icon-share, .icon-save, .icon-help {
-	width: 60px;
-	height: 60px;
-}
-.icons {
-	display: inline-block;
-}
-
-.share {
-	position: absolute;
-	left: 350px;
-}
-
-.help {
-	position: absolute;
-	right: 350px;
-}
-
-.icon-text {
-	color: var(--color-purple-text);
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 15px;
 }
 
 .search-bar {
@@ -149,4 +93,49 @@
 
 .loupe:focus {
 	outline: none;
+}
+
+.join-community {
+	color: var(--color-purple-text);
+	font-weight: normal;
+	font-size: 40px;
+	margin-top: 0;
+}
+
+.now {
+	font-weight: bold;
+}
+
+.join-icons {
+	padding-top: 50px;
+	text-align: center;
+}
+
+.icon-share, .icon-save, .icon-help {
+	width: 60px;
+	height: 60px;
+}
+.icons {
+	display: inline-block;
+}
+
+.share {
+	position: absolute;
+	left: 350px;
+}
+
+.help {
+	position: absolute;
+	right: 350px;
+}
+
+.icon-text {
+	color: var(--color-purple-text);
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 15px;
+}
+
+.traitement {
+	font-size: 20px;
 }

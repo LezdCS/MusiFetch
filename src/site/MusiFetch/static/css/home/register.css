@@ -1,0 +1,21 @@
+@import url("style_base.css");
+
+.musifetch {
+    background-color: var(--color-pink2);
+    height: 750px;
+}
+
+.title {
+    color: var(--color-pink1);
+    font-weight: normal;
+	font-size: 75px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.subtitle {
+	color: var(--color-purple-text);
+	font-weight: normal;
+	font-size: 32px;
+	margin-top: -20px;
+}
