@@ -118,7 +118,7 @@ CREATE INDEX hashe_index ON public.fingerprints (hashe);
 CREATE TABLE public.buffer
 (
     hashe character varying COLLATE pg_catalog."default",
-    id_music integer
+    id_user integer
 )
 
     TABLESPACE pg_default;

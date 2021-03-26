@@ -222,21 +222,29 @@ class Algo:
                                      database='MusiFetch', port="5432", host="db")
         await conn.execute("DELETE FROM buffer")
 
+        last_id_user_buffer = await conn.fetchval("SELECT id_user FROM buffer order by id_user DESC LIMIT 1")
+        if last_id_user_buffer is None:
+            last_id_user_buffer = 0
+
+
+        last_id_user_buffer = last_id_user_buffer+1
+
+
         for i in range(0, len(hashes)):
             hashes[i] = list(hashes[i])
-            hashes[i][1] = 1
+            hashes[i][1] = last_id_user_buffer
             hashes[i] = tuple(hashes[i])
 
-        await conn.copy_records_to_table('buffer', records=hashes)
+        await conn.copy_records_to_table('buffer', records=hashes,columns=('hashe','id_user'))
         results = {}
         occuring ={}
         results = await conn.fetch("SELECT COUNT (buffer.hashe) as nb, m.titre ,m.id FROM buffer "
                                    "FULL JOIN fingerprints USING (hashe) "
                                    "inner join music m on m.id = fingerprints.id_music "
-                                   "WHERE "
-                                   "buffer.hashe IS NOT NULL "
-                                   "OR fingerprints.hashe IS NOT NULL "
-                                   "group by m.id order by nb DESC")
+                                   "WHERE id_user = $1 AND"
+                                   " (buffer.hashe IS NOT NULL "
+                                   "OR fingerprints.hashe IS NOT NULL) "
+                                   "group by m.id order by nb DESC", last_id_user_buffer)
 
         print(results)
         for result in results:
