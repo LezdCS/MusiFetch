@@ -1,0 +1,23 @@
+@import url("style_base.css");
+
+nav{
+    background-color: var(--color-purple-text);
+}
+
+#main{
+    background-color: var(--color-pink2);
+    color: white;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#main>div{
+    margin-top: 20px;
+}
+
+#main>div>form{
+    width:50%;
+    margin:0 auto;
+    text-align:center;
+}
