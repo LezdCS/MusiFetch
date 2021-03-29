@@ -232,7 +232,7 @@ class Algo:
     async def find(self, hashes):
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                      database='MusiFetch', port="5432", host="db")
-        await conn.execute("DELETE FROM buffer")
+
 
         last_id_user_buffer = await conn.fetchval("SELECT id_user FROM buffer order by id_user DESC LIMIT 1")
         if last_id_user_buffer is None:
@@ -257,7 +257,7 @@ class Algo:
                                    " (buffer.hashe IS NOT NULL "
                                    "OR fingerprints.hashe IS NOT NULL) "
                                    "group by m.id order by nb DESC", last_id_user_buffer)
-
+        await conn.execute("DELETE FROM buffer WHERE id_user = $1",last_id_user_buffer)
         print(results)
         for result in results:
             # print(result['count'])
