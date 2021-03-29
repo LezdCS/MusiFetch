@@ -32,6 +32,8 @@ import asyncio
 import sys
 
 
+
+
 class Algo:
 
     def __init__(self):
@@ -92,8 +94,18 @@ class Algo:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
             self.video_title = info_dict.get('title', None)
-
-        sound = AudioSegment.from_wav(self.video_title + '.wav')
+        print(self.video_title)
+        invalid = '<>:/"\|?*'
+        test = self.video_title
+        for char in invalid:
+            if (char == "/"):
+                test = test.replace(char, '_')
+            if (char == '"'):
+                test = test.replace(char, "'")
+            else:
+                test = test.replace(char, '')
+        print (test)
+        sound = AudioSegment.from_wav(test + '.wav')
         sound = sound.set_channels(1)
         if time_start is not None and time_end is not None:
             t1 = time_start * 1000  # Works in milliseconds
@@ -102,9 +114,9 @@ class Algo:
                 sound = sound[t1:t2]
             else:
                 print("Timecode mauvais, veuillez saisir des temps en secondes corrects")
-        sound.export(self.video_title + '.wav', format="wav")
+        sound.export(test + '.wav', format="wav")
 
-        return self.spectrogram_and_peaks(self.video_title + '.wav')
+        return self.spectrogram_and_peaks(test + '.wav')
 
     def spectrogram_and_peaks(self, file_path, show_spectrogram=False):
         sample_rate, samples = wavfile.read(file_path)

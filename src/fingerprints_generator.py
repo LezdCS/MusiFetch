@@ -16,6 +16,11 @@ from scipy.ndimage.morphology import (binary_erosion,
                                       generate_binary_structure,
                                       iterate_structure)
 
+
+
+# regex dependencies
+import re
+import unicodedata
 # hash dependencies
 import hashlib
 from operator import itemgetter
@@ -25,6 +30,7 @@ from typing import List, Tuple
 import asyncpg
 import asyncio
 import sys
+
 
 
 def download_ytb(url, time_start=None, time_end=None):
@@ -40,7 +46,17 @@ def download_ytb(url, time_start=None, time_end=None):
         info_dict = ydl.extract_info(url, download=True)
         video_title = info_dict.get('title', None)
 
-    sound = AudioSegment.from_wav(video_title + '.wav')
+    print(video_title)
+    invalid = '<>:/\|?*'
+    test = video_title
+    for char in invalid:
+        if (char == "/"):
+            test = test.replace(char, '_')
+        else:
+            test = test.replace(char, '')
+    print (test)
+
+    sound = AudioSegment.from_wav(test + '.wav')
     sound = sound.set_channels(1)
     if time_start is not None and time_end is not None:
         t1 = time_start * 1000  # Works in milliseconds
@@ -49,9 +65,9 @@ def download_ytb(url, time_start=None, time_end=None):
             sound = sound[t1:t2]
         else:
             print("Timecode mauvais, veuillez saisir des temps en secondes corrects")
-    sound.export(video_title + '.wav', format="wav")
+    sound.export(test + '.wav', format="wav")
 
-    return video_title + '.wav'
+    return test + '.wav'
 
 
 def spectrogram_and_peaks(file_path, show_spectrogram=False):
