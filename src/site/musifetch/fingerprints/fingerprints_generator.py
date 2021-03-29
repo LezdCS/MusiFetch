@@ -50,7 +50,7 @@ class Algo:
         elif choix == "createPlaylist":
             urls = self.getPlaylistUrls(url)
             for i in range(len(urls)):
-                print(""+i+"/"+len(urls)+"")
+                print(""+str(i)+"/"+str(len(urls))+"")
                 loop.run_until_complete(self.create(self.download_ytb(urls[i])))
 
 
