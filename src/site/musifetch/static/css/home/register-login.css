@@ -51,7 +51,7 @@
 	color: var(--color-pink2);
 }
 
-.valid-registration {
+.valid-registration, .valid-login {
 	background-color: var(--color-purple-text);
 	border: 0 solid var(--color-purple-bt);
 	display:inline-block;
@@ -63,4 +63,28 @@
 	margin-top: 50px;
 	text-decoration:none;
 	padding: 0 40px 0 40px;
+}
+
+.error {
+	font-size: 20px;
+	color: var(--color-purple-text);
+}
+
+.options {
+	font-size: 22px;
+	color: var(--color-grey-options);
+}
+
+/* Register errors */
+
+.email {
+
+}
+
+.username {
+
+}
+
+.password {
+
 }

@@ -10,10 +10,11 @@
 }
 
 .header-buttons {
-	text-align: right;
+	padding: 10px 15px;
+	margin-top: 20px;
 }
 
-.bt-register, .bt-login {
+.button {
 	box-shadow: 0 3px 3px 0 #927b7f;
 	background-color: white;
 	border-radius: 30px;
@@ -23,11 +24,9 @@
 	text-decoration: none;
 	color: var(--color-purple-bt);
 	font-size: 16px;
-	padding: 10px 15px;
-	margin-top: 20px;
 }
 
-.bt-register:hover, .bt-login:hover {
+.button:hover {
 	box-shadow: 0 0 0 0 #927b7f;
 	background-color: var(--color-pink2);
 	border-radius: 30px;

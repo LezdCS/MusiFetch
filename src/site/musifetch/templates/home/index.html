@@ -12,12 +12,11 @@
 </head>
 <body class="full-page">
     <div class="container-fluid high-page">
-        <header>
-            <div class="header-buttons">
-                <a href="/register/" class="bt-register mr-3">Register</a>
-                <a href="#" class="bt-login mr-2">Login</a>
-            </div>
-        </header>
+        {% if request.user.is_authenticated %}
+        {% include 'home/navs/logged.html' %}
+        {% else %}
+        {% include 'home/navs/visitor.html' %}
+        {% endif %}
         <div class="container text-center pt-3">
             <h1 class="title">MusiFetch</h1>
             <h2 class="subtitle">The tool you ever looked for</h2>
