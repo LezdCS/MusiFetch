@@ -46,15 +46,21 @@ def download_ytb(url, time_start=None, time_end=None):
         info_dict = ydl.extract_info(url, download=True)
         video_title = info_dict.get('title', None)
 
-    print(video_title)
-    invalid = '<>:/\|?*'
+
     test = video_title
+    print("video title"+video_title)
+    invalid = '<>:/"\|?*'
+
     for char in invalid:
         if (char == "/"):
             test = test.replace(char, '_')
+        if (char == '"'):
+            test = test.replace(char, "'")
+        if (char == "|"):
+            test = test.replace(char, "_")
         else:
             test = test.replace(char, '')
-    print (test)
+    print ("replaced : "+test)
 
     sound = AudioSegment.from_wav(test + '.wav')
     sound = sound.set_channels(1)

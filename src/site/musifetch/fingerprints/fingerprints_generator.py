@@ -50,6 +50,7 @@ class Algo:
         elif choix == "createPlaylist":
             urls = self.getPlaylistUrls(url)
             for i in range(len(urls)):
+                print(""+i+"/"+len(urls)+"")
                 loop.run_until_complete(self.create(self.download_ytb(urls[i])))
 
 
@@ -94,7 +95,7 @@ class Algo:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
             self.video_title = info_dict.get('title', None)
-        print(self.video_title)
+        print("video title"+self.video_title)
         invalid = '<>:/"\|?*'
         test = self.video_title
         for char in invalid:
@@ -102,9 +103,11 @@ class Algo:
                 test = test.replace(char, '_')
             if (char == '"'):
                 test = test.replace(char, "'")
+            if (char == "|"):
+                test = test.replace(char, "_")
             else:
                 test = test.replace(char, '')
-        print (test)
+        print ("replaced : "+test)
         sound = AudioSegment.from_wav(test + '.wav')
         sound = sound.set_channels(1)
         if time_start is not None and time_end is not None:
