@@ -3,41 +3,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MusiFetch | Recherche</title>
+    <title>MusiFetch | Search</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home/find.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/navs.css' %}">
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{% static 'img/favicon.png'%}">
 </head>
-<body style="margin: 0px; background-color: var(--color-pink1);">
-    <div class="global-container">
-        <div class="high-container">
-            <div class="musifetch">
-                <a href="/home/" class="title">MusiFetch</a>
-            </div>
-            <div class="header-buttons">
-                <a href="#" class="bt-register">Inscription</a>
-                <a href="#" class="bt-login">Connexion</a>
-            </div>
-            <form class="search-bar" action="/find/" method="post">
-                {% csrf_token %}
-                <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insérez un nouveau lien ici" onclick="this.placeholder='';">
-                <button type="submit" class="loupe"><img src="{% static 'img/home/loupe.png' %}" class="loupe-img"></button>
-            </form>
-        </div>
-        <div class="low-container">
-            <h2 class="subtitle">Notre application a trouvé des musiques pour vous !</h2>
-            <div class="results">
+<body class="full-page">
+    <div class="container-fluid high-page">
+        {% if request.user.is_authenticated %}
+            {% include 'home/navs/logged.html' %}
+        {% else %}
+            {% include 'home/navs/visitor.html' %}
+        {% endif %}
+        <form class="search-bar" action="/find/" method="post">
+            {% csrf_token %}
+            <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insert a new link here">
+            <button type="submit" class="loupe"><img src="{% static 'img/home/loupe.png' %}" class="loupe-img"></button>
+        </form>
+    </div>
+    <div class="low-container">
+        <h2 class="subtitle">Our application found some musics for you!</h2>
+        <div class="results">
+            <hr>
+            {% for key,value in occurences.items %}
+                <h3 class="label">TITRE</h3>
+                <span class="result-set">{{ value.titre }}</span>
+                <br>
+                <h3 class="label">NOMBRE D'ITERATIONS</h3>
+                <span class="result-set">{{ value.count }}</span>
                 <hr>
-                {% for key,value in occurences.items %}
-                    <h3 class="label">TITRE</h3>
-                    <span class="result-set">{{ value.titre }}</span>
-                    <br>
-                    <h3 class="label">NOMBRE D'ITERATIONS</h3>
-                    <span class="result-set">{{ value.count }}</span>
-                    <hr>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
 </body>

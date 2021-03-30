@@ -1,0 +1,41 @@
+@import url("style_base.css");
+
+.header-buttons {
+	margin: 10px 0 10px;
+}
+
+.user {
+	color: var(--color-pink1);
+	font-size: 20px;
+}
+
+.username {
+	color: var(--color-purple-text);
+	font-weight: bold;
+}
+
+.button {
+	box-shadow: 0 3px 3px 0 #927b7f;
+	background-color: white;
+	border-radius: 30px;
+	border: 2px solid var(--color-purple-bt);
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--color-purple-bt);
+	font-size: 16px;
+	padding: 10px 15px;
+}
+
+.button:hover {
+	box-shadow: 0 0 0 0 #927b7f;
+	background-color: var(--color-pink2);
+	border-radius: 30px;
+	border: 2px solid white;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	padding: 10px 15px;
+}
