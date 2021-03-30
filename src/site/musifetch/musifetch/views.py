@@ -7,6 +7,9 @@ from django.core.validators import *
 import sys
 from fingerprints import fingerprints_generator
 
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .permissions import is_in_group_contributor
+
 sys.path.append("..")  # Adds higher directory to python modules path.
 
 
@@ -73,6 +76,8 @@ def find(request):
     return redirect('/home')
 
 
+@login_required(login_url="/login/")
+@user_passes_test(is_in_group_contributor, login_url='/home/')
 def create(request):
     if request.method == 'GET':
         return render(request, 'home/create.twig', {})
@@ -88,14 +93,6 @@ def create(request):
             algo = fingerprints_generator.Algo()
             algo.choice("createPlaylist", request.POST['link'])
 
-        # ytb_link = request.POST['video_link']
-        # playlist_link = request.POST['playlist_link']
-        # if (ytb_link != ""):
-        #     algo = fingerprints_generator.Algo()
-        #     algo.choice("create", ytb_link)
-        # elif (playlist_link != ""):
-        #     algo = fingerprints_generator.Algo()
-        #     algo.choice("createPlaylist",playlist_link)
     return redirect('/home')
 
 

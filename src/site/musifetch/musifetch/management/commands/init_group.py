@@ -9,4 +9,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         group, created = Group.objects.get_or_create(name='contributor')
-        superuser = User.objects.create_superuser('admin', 'admin@gmail.com', '1UT2BM9O')
+        User.objects.filter(username='admin').exists() or \
+            User.objects.get_or_create_superuser('admin', 'admin@gmail.com', '1UT2BM9O')
