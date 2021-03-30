@@ -13,9 +13,9 @@
 <body class="full-page">
     <div class="container-fluid high-page">
         {% if request.user.is_authenticated %}
-        {% include 'home/navs/logged.html' %}
+            {% include 'home/navs/logged.html' %}
         {% else %}
-        {% include 'home/navs/visitor.html' %}
+            {% include 'home/navs/visitor.html' %}
         {% endif %}
         <div class="container text-center pt-3">
             <h1 class="title">MusiFetch</h1>
@@ -31,23 +31,11 @@
         </form>
     </div>
     <div class="low-page">
-        <div class="container text-center pt-5">
-            <h3 class="join-community">Join the community <a href="/register/" class="now">now</a></h3>
-            <div class="join-icons">
-                <div class="icons share">
-                    <img src="{% static 'img/home/share.png' %}" class="icon-share">
-                    <p class="icon-text">Share</p>
-                </div>
-                <div class="icons save">
-                    <img src="{% static 'img/home/save.png' %}" class="icon-save">
-                    <p class="icon-text">Save</p>
-                </div>
-                <div class="icons help">
-                    <img src="{% static 'img/home/help.png' %}" class="icon-help">
-                    <p class="icon-text">Help</p>
-                </div>
-            </div>
-        </div>
+        {% if request.user.is_authenticated %}
+            {% include 'home/low_pages/logged.html' %}
+        {% else %}
+            {% include 'home/low_pages/visitor.html' %}
+        {% endif %}
     </div>
 </body>
 <script src="{% static 'js/home/index.js' %}"></script>
