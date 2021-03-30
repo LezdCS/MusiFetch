@@ -23,8 +23,8 @@ class Fingerprints(models.Model):
 
 class Music(models.Model):
     titre = models.CharField(max_length=255, blank=True, null=True)
-    urlminiature = models.CharField(max_length=255, blank=True, null=True)
-    urlvideo = models.CharField(max_length=255, blank=True, null=True)
+    idvideo = models.CharField(max_length=255, blank=True, null=True)
+
 
     class Meta:
         managed = False
