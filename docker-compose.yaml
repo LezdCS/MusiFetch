@@ -11,15 +11,6 @@ services:
       - ./docker/postgres/:/docker-entrypoint-initdb.d/
     networks:
       - db_network
-  python:
-    build:
-      context: ./docker/python
-    volumes:
-      - .:/code
-    depends_on:
-      - db
-    networks:
-      - db_network
   web:
     build: ./src/site/musifetch
     command: bash -c "python manage.py migrate && python -u manage.py runserver 0.0.0.0:8000"

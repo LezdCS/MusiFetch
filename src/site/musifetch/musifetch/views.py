@@ -12,6 +12,11 @@ sys.path.append("..")  # Adds higher directory to python modules path.
 
 # routes
 
+
+def index(request):
+    return render(request, 'home/index.html')
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['login']
