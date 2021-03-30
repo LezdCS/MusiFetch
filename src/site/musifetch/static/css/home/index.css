@@ -51,6 +51,7 @@
 .loupe {
 	border: none;
 	background: none;
+	animation: zoom 1.5s ease-in-out infinite;
 }
 
 .loupe-img {
@@ -60,6 +61,10 @@
 
 .loupe:focus {
 	outline: none;
+}
+
+.loupe:hover{
+	transform: scale(0);
 }
 
 .join-community {
@@ -118,4 +123,10 @@
 	from { transform: translateY(0);}
 	50% { transform:  translateY(10px);}
 	to { transform: translateY(0);}
+}
+
+@keyframes zoom {
+	from { transform: scale(0.8);}
+	50% { transform:  scale(1);}
+	to { transform: scale(0.8);}
 }
