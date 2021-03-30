@@ -110,7 +110,12 @@
 }
 
 .traitement {
+	animation: bounce 2s ease infinite;
 	font-size: 20px;
 }
 
-
+@keyframes bounce {
+	from { transform: translateY(0);}
+	50% { transform:  translateY(10px);}
+	to { transform: translateY(0);}
+}
