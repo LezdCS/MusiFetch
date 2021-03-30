@@ -35,8 +35,8 @@ def register(request):
         errors = validatorRegister(donnees)
         if errors == {}:
             try:
-                User.objects.create_user(username, email, password)
-                messages.success(request, 'Account was successfully created. Welcome, ' + username + '!')
+                user = User.objects.create_user(username, email, password)
+                login(request, user)
                 return redirect('/home')
             except:
                 html = "<html><body>Erreur inconnue</body></html>"

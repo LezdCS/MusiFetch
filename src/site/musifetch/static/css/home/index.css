@@ -10,8 +10,17 @@
 }
 
 .header-buttons {
-	margin-top: 20px;
-	padding: 10px 15px;
+	margin: 10px 0 10px;
+}
+
+.user {
+	color: var(--color-pink1);
+	font-size: 20px;
+}
+
+.username {
+	color: var(--color-purple-text);
+	font-weight: bold;
 }
 
 .button {
