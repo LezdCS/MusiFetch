@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home/navs.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home/find.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/aos.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{% static 'img/favicon.png'%}">
+
 </head>
 <body class="full-page">
     <div class="container-fluid high-page">
@@ -29,20 +31,26 @@
         <div class="results">
             <hr>
             {% for key,value in occurences.items %}
-                <h3>TITRE</h3>
-                <span class="result-set">{{ value.titre }}</span>
-                <br>
-                <iframe id="ytplayer" type="text/html" width="360" height="202"
+                <div  data-aos="fade-up">
+                    <h3>TITRE</h3>
+                    <span class="result-set">{{ value.titre }}</span>
+                    <br>
+                    <iframe id="ytplayer" type="text/html" width="360" height="202"
                         src="https://www.youtube.com/embed/{{ value.idvideo }}"
                         frameborder="0" allowfullscreen></iframe>
-                <br>
-                <h4>POURCENTAGE DE PRÉSENCE</h4>
-                <span class="result-set">{{ value.count }} %</span>
-                <h4>POURCENTAGE DE LA VIDEO ORIGINALE</h4>
-                <span class="result-set">{{ value.countIdMusic }} %</span>
-                <hr>
+                    <br>
+                    <h4>POURCENTAGE DE PRÉSENCE</h4>
+                    <span class="result-set">{{ value.count }} %</span>
+                    <h4>POURCENTAGE DE LA VIDEO ORIGINALE</h4>
+                    <span class="result-set">{{ value.countIdMusic }} %</span>
+                    <hr>
+                </div>
             {% endfor %}
         </div>
     </div>
+    <script src="{% static 'js/home/aos.js' %}"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
