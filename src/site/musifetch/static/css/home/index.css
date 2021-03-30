@@ -71,6 +71,12 @@
 
 .now {
 	font-weight: bold;
+	text-decoration: none;
+}
+
+.now:hover {
+	font-weight: bold;
+	text-decoration: none;
 }
 
 .join-icons {
@@ -106,4 +112,5 @@
 .traitement {
 	font-size: 20px;
 }
+
 
