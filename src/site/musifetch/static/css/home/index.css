@@ -130,3 +130,18 @@
 	50% { transform:  scale(1);}
 	to { transform: scale(0.8);}
 }
+
+@media only screen and (max-width: 600px) {
+	.loupe img {
+		margin-top: 10px;
+		content:url("../../img/home/loupe.png") ;
+	}
+	.icons {
+		margin-right: 3px;
+		margin-left: 3px;
+
+
+
+	}
+
+}
