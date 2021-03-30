@@ -39,6 +39,7 @@ class Algo:
     def __init__(self):
         self.occurences = {}
         self.video_title = ""
+        self.video_id = ""
 
     def choice(self, choix, url):
         loop = asyncio.new_event_loop()
@@ -95,6 +96,10 @@ class Algo:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
             self.video_title = info_dict.get('title', None)
+
+        self.video_id = info_dict.get("id", None)
+
+
         print("video title"+self.video_title)
         invalid = '<>:/"\|?*'
         test = self.video_title
@@ -210,7 +215,7 @@ class Algo:
 
         music = await conn.fetchrow("SELECT * FROM music WHERE titre = $1", self.video_title)
         if music is None:
-            new_music = await conn.execute("INSERT INTO music (titre) VALUES($1)", self.video_title)
+            new_music = await conn.execute("INSERT INTO music (titre , idvideo) VALUES($1,$2)", self.video_title, self.video_id)
             last_id_music = await conn.fetchval("SELECT id FROM music order by id DESC LIMIT 1")
 
             last_id_fingerprint = await conn.fetchval("SELECT id FROM fingerprints order by id DESC LIMIT 1")
@@ -251,9 +256,13 @@ class Algo:
             hashes[i] = tuple(hashes[i])
 
         await conn.copy_records_to_table('buffer', records=hashes,columns=('hashe','id_user'))
+        NB_MUSIC = await conn.fetchval("SELECT count(hashe) FROM buffer WHERE id_user = $1",last_id_user_buffer)
+
+
+        print(NB_MUSIC)
         results = {}
         occuring ={}
-        results = await conn.fetch("SELECT COUNT (buffer.hashe) as nb, m.titre ,m.id FROM buffer "
+        results = await conn.fetch("SELECT COUNT (buffer.hashe) as nb, m.titre ,m.id,m.idvideo FROM buffer "
                                    "FULL JOIN fingerprints USING (hashe) "
                                    "inner join music m on m.id = fingerprints.id_music "
                                    "WHERE id_user = $1 AND"
@@ -261,14 +270,31 @@ class Algo:
                                    "OR fingerprints.hashe IS NOT NULL) "
                                    "group by m.id order by nb DESC", last_id_user_buffer)
         await conn.execute("DELETE FROM buffer WHERE id_user = $1",last_id_user_buffer)
+
+
+
         print(results)
         for result in results:
+
+
+            nbTotal = await conn.fetchval("SELECT count(hashe) from fingerprints where id_music = $1",result['id'])
+            percentPresence = ((result['nb']*100)/NB_MUSIC)
+            percentInMusic = ((result['nb']*100)/nbTotal)
+
+            if percentPresence >= 100:
+                percentPresence = 100
+            if percentInMusic >= 100:
+                percentInMusic = 100
+
             # print(result['count'])
             # print(result['titre'])
             # print(result['id'])
 
+
             occuring[result['id']]={}
             occuring[result['id']]['titre'] = result['titre']
-            occuring[result['id']]['count']= result['nb']
+            occuring[result['id']]['count'] = round(percentPresence,2)
+            occuring[result['id']]['countIdMusic'] = round(percentInMusic,2)
+            occuring[result['id']]['idvideo'] = result['idvideo']
         await conn.close()
         self.occurences = occuring

@@ -8,7 +8,11 @@
 from django.db import models
 
 
+
+
+
 class Fingerprints(models.Model):
+    id = models.IntegerField(primary_key=True)
     hashe = models.CharField(max_length=255, blank=True, null=True)
     id_music = models.ForeignKey('Music', models.DO_NOTHING, db_column='id_music', blank=True, null=True)
 
@@ -19,6 +23,8 @@ class Fingerprints(models.Model):
 
 class Music(models.Model):
     titre = models.CharField(max_length=255, blank=True, null=True)
+    urlminiature = models.CharField(max_length=255, blank=True, null=True)
+    urlvideo = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

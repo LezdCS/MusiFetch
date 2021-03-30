@@ -2,7 +2,6 @@
 
 hr {
 	width: 500px;
-	border-top: 20px solid black;
 }
 
 .full-page {
@@ -50,10 +49,17 @@ hr {
 	text-align: center;
 }
 
-.label {
+h3{
 	color: black;
 	font-weight: bold;
 	font-size: 30px;
+	margin: 15px;
+}
+
+h4{
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
 	margin: 15px;
 }
 

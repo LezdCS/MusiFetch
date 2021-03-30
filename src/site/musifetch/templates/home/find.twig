@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>MusiFetch | Search</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/home/find.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/home/navs.css' %}">
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/navs.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/find.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{% static 'img/favicon.png'%}">
 </head>
@@ -20,7 +20,7 @@
         {% endif %}
         <form class="search-bar" action="/find/" method="post">
             {% csrf_token %}
-            <input id="video_link" name="video_link" class="input-search" type="text" placeholder="Insert a new link here">
+            <input id="video_link" name="video_link" class="input-search col-12 col-md-8 col-sm-6" type="text" placeholder="Insert a new link here">
             <button type="submit" class="loupe"><img src="{% static 'img/home/loupe.png' %}" class="loupe-img"></button>
         </form>
     </div>
@@ -29,11 +29,17 @@
         <div class="results">
             <hr>
             {% for key,value in occurences.items %}
-                <h3 class="label">TITRE</h3>
+                <h3>TITRE</h3>
                 <span class="result-set">{{ value.titre }}</span>
                 <br>
-                <h3 class="label">NOMBRE D'ITERATIONS</h3>
-                <span class="result-set">{{ value.count }}</span>
+                <iframe id="ytplayer" type="text/html" width="360" height="202"
+                        src="https://www.youtube.com/embed/{{ value.idvideo }}"
+                        frameborder="0" allowfullscreen></iframe>
+                <br>
+                <h4>POURCENTAGE DE PRÉSENCE</h4>
+                <span class="result-set">{{ value.count }} %</span>
+                <h4>POURCENTAGE DE LA VIDEO ORIGINALE</h4>
+                <span class="result-set">{{ value.countIdMusic }} %</span>
                 <hr>
             {% endfor %}
         </div>

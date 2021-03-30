@@ -43,7 +43,9 @@ ALTER TABLE public.fingerprints OWNER TO postgres;
 
 CREATE TABLE public.music (
                               id integer NOT NULL,
-                              titre character varying
+                              titre character varying,
+                              idvideo character varying
+
 );
 
 
