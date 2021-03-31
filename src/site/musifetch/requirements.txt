@@ -11,3 +11,4 @@ Django>=3.0,<4.0
 psycopg2
 djangorestframework
 google-api-python-client
+lxml

@@ -1,0 +1,24 @@
+@import url("style_base.css");
+
+.navhistory{
+    background-color: #bd7783;
+}
+.result{
+    text-align: center;
+    margin-top: 50%;
+}
+.titre{
+    margin-top: 10px;
+}
+
+.traitement {
+    animation: bounce 2s ease infinite;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0);}
+    50% { transform:  translateY(10px);}
+    to { transform: translateY(0);}
+}

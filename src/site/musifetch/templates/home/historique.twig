@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MusiFetch | Search</title>
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/navs.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/historique.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/aos.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'img/favicon.png'%}">
+
+</head>
+<body>
+<div class="navhistory">
+{% if request.user.is_authenticated %}
+    {% include 'home/navs/logged.html' %}
+{% else %}
+    {% include 'home/navs/visitor.html' %}
+{% endif %}
+
+</div>
+<div class="container">
+
+<div>
+    <h1 class="titre">RÉCAPITULATIFS DES RECHERCHES</h1>
+</div>
+
+    <div class="container traitement text-center pt-3" id="traitement"></div>
+
+
+    <table class="table  table-striped">
+        <thead>
+        <tr>
+
+            <th scope="col">Titre</th>
+            <th scope="col">Video</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for result in results %}
+
+        <tr data-aos="fade-up">
+            <td class="result titre">{{ result.titre }}</td>
+            <td class="result player"><iframe id="ytplayer" type="text/html" width="180" height="101"
+                        src="https://www.youtube.com/embed/{{ result.id_video }}"
+                        frameborder="0" allowfullscreen></iframe>
+            </td>
+            <td class="header-buttons ml-auto ">
+                <form method="POST" action="/find/">
+                    {% csrf_token %}
+                    <button onclick="traitement()" id="video_link" name="video_link" value="https://www.youtube.com/watch?v={{ result.id_video }}" type="submit" class="button">Analyser a nouveau</button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+
+
+        {% endfor %}
+        </tbody>
+
+
+
+    </table>
+
+</div>
+
+</body>
+<script src="{% static 'js/home/aos.js' %}"></script>
+<script>
+    AOS.init();
+</script>
+<script src="{% static 'js/home/index.js' %}"></script>
+
+</html>

@@ -238,6 +238,7 @@ class Algo:
         return True
 
     async def find(self, hashes):
+
         conn = await asyncpg.connect(user='postgres', password='MusiFetch',
                                      database='MusiFetch', port="5432", host="db")
 

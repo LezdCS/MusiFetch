@@ -32,7 +32,7 @@ class Music(models.Model):
 
 
 class History(models.Model):
-    id_video = models.CharField(max_length=255,blank=True,null=True)
+    id_video = models.CharField(max_length=255, blank=True, null=True)
     id_user = models.IntegerField()
 
     class Meta:

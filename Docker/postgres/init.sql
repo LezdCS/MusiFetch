@@ -136,3 +136,17 @@ CREATE INDEX buffer_hashe_hashe1_idx
     (hashe COLLATE pg_catalog."default" ASC NULLS LAST)
     INCLUDE(hashe)
     TABLESPACE pg_default;
+
+
+CREATE TABLE public.history
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 0 MINVALUE 0 MAXVALUE 99999999 CACHE 1 ),
+    id_video character varying(255) COLLATE pg_catalog."default",
+    id_user integer,
+    CONSTRAINT history_pkey PRIMARY KEY (id)
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE public.history
+    OWNER to postgres;

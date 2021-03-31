@@ -1,3 +1,5 @@
+
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -6,9 +8,14 @@ from django.contrib import messages
 from django.core.validators import *
 import sys
 from fingerprints import fingerprints_generator
-
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .permissions import is_in_group_contributor
+from .models import History, Music
+
+import lxml
+from lxml import etree
+import urllib.request
 
 sys.path.append("..")  # Adds higher directory to python modules path.
 
@@ -18,6 +25,36 @@ sys.path.append("..")  # Adds higher directory to python modules path.
 
 def index(request):
     return render(request, 'home/index.html')
+
+
+@login_required(login_url="/login/")
+def history_view(request):
+    user = request.user.id
+    history_user = History.objects.filter(id_user=user)
+    videos_titles = []
+    results = []
+
+
+
+    for i in history_user:
+        dict = {}
+        dict['id_video'] = i.id_video
+
+        youtube_watch_url = 'https://www.youtube.com/watch?v='
+        youtube_watch_url += i.id_video
+        youtube = etree.HTML(urllib.request.urlopen(youtube_watch_url).read().decode('utf-8'))
+        videos_titles.append(youtube.xpath("//title")[0].text) #get xpath using firepath firefox addon
+        dict['titre'] = youtube.xpath("//title")[0].text
+        results.append(dict)
+
+
+
+
+
+
+
+
+    return render(request, 'home/historique.twig', {'histories': history_user, 'videos_titles': videos_titles,'results':results})
 
 
 def login_view(request):
@@ -63,8 +100,13 @@ def logout_view(request):
 
 def find(request):
     if request.method == 'POST':
-        ytb_link = request.POST['video_link']
 
+        ytb_link = request.POST['video_link']
+        if request.user.is_authenticated:
+            user = request.user.id
+            id_video = ytb_link.split("=")[1]
+            history = History(id_video=id_video, id_user=user)
+            history.save()
         try:
             algo = fingerprints_generator.Algo()
             algo.choice("find", ytb_link)
