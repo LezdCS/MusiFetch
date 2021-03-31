@@ -4,9 +4,10 @@
 	margin: 10px 0 10px;
 }
 
-.back-home {
+.back-home > a{
 	font-size: 40px;
 	color: var(--color-pink1);
+	margin-left: 10px;
 }
 
 .user {
