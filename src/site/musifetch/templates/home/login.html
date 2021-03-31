@@ -31,7 +31,7 @@
                 <div class="container text-center pt-5">
                     <form action="/login/" method="POST">
                         {% csrf_token %}
-                        <input id="login" name="login" class="input" type="text" placeholder="Username">
+                        <input id="login" name="login" class="input" type="text" placeholder="Username" style="margin-bottom: 30px;">
                         <input id="password" name="password" class="input" type="password" placeholder="Password">
                         <button type="submit" class="valid">Login</button>
                     </form>
