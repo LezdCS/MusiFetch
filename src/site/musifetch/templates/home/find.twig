@@ -16,9 +16,9 @@
 <body class="full-page">
     <div class="container-fluid high-page">
         {% if request.user.is_authenticated %}
-            {% include 'home/navs/logged.html' %}
+            {% include 'home/navs/home/logged.html' %}
         {% else %}
-            {% include 'home/navs/visitor.html' %}
+            {% include 'home/navs/home/visitor.html' %}
         {% endif %}
         <form class="search-bar" action="/find/" method="post">
             {% csrf_token %}
