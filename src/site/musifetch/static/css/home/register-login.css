@@ -5,7 +5,12 @@
     height: 750px;
 }
 
-.title {
+.navhistory{
+	background-color: #bd7783;
+	padding-right: 10px;
+}
+
+h1 {
     color: var(--color-pink1);
     font-weight: normal;
 	font-size: 75px;
@@ -31,8 +36,7 @@
 	color: var(--color-purple-text);
 	font-size: 18px;
 	width: 360px;
-	height: 70px;
-	margin-top: 50px;
+	height: 50px;
 	text-decoration:none;
 	padding: 0 40px 0 40px;
     transition : all 0.3s  ease-in-out;
@@ -61,7 +65,7 @@
 	font-size: 40px;
 	width: 360px;
 	height: 70px;
-	margin-top: 50px;
+	margin-top: 40px;
 	text-decoration:none;
 	padding: 0 40px 0 40px;
 	transition : all 0.3s  ease-in-out;

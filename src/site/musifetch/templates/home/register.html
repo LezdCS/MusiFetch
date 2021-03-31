@@ -6,33 +6,47 @@
     <title>MusiFetch | Register</title>
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/navs.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home/register-login.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{% static 'img/favicon.png'%}">
 </head>
 <body class="full-page">
+    <div class="navhistory">
+        {% if request.user.is_authenticated %}
+            {% include 'home/navs/logged.html' %}
+        {% else %}
+            {% include 'home/navs/visitor.html' %}
+        {% endif %}
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-7 musifetch">
                 <div class="container text-center pt-5">
-                    <h1 class="title"><a href="/home/">MusiFetch</a></h1>
+                    <h1 class="title">MusiFetch</h1>
                     <h2 class="subtitle">The tool you ever looked for</h2>
-                </div>
-                <div>
-                    {{ email_error }}
-                    {{ username_error }}
-                    {{ password_error }}
-                    {{ confirm_password_error }}
                 </div>
             </div>
             <div class="col-sm-5 form">
                 <div class="container text-center pt-5">
-                    <form action="/register/" method="POST">
+                    <form action="/register/" method="POST" class="was-validated">
                         {% csrf_token %}
-                        <input id="email" name="email" class="input" type="text" value="{{ keep_email }}"placeholder="Email">
-                        <input id="username" name="username" class="input" type="text" value="{{ keep_username }}" placeholder="Username">
-                        <input id="password" name="password" class="input" type="password" placeholder="Password">
+                        <input id="email" name="email" class="input" type="text" value="{{ keep_email }}" placeholder="Email" style="margin-bottom: 30px;">
+                        <div class="invalid-feedback d-block">
+                            {{ email_error }}
+                        </div>
+                        <input id="username" name="username" class="input" type="text" value="{{ keep_username }}" placeholder="Username" style="margin-bottom: 30px;">
+                        <div class="invalid-feedback d-block">
+                            {{ username_error }}
+                        </div>
+                        <input id="password" name="password" class="input" type="password" placeholder="Password" style="margin-bottom: 30px;">
+                        <div class="invalid-feedback d-block">
+                            {{ password_error }}
+                        </div>
                         <input id="confirm_password" name="confirm_password" class="input" type="password" placeholder="Confirm password">
+                        <div class="invalid-feedback d-block">
+                            {{ confirm_password_error }}
+                        </div>
                         <button type="submit" class="valid">Register</button>
                     </form>
                     <div class="options pt-2">
