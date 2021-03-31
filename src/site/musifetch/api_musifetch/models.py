@@ -8,9 +8,6 @@
 from django.db import models
 
 
-
-
-
 class Fingerprints(models.Model):
     id = models.IntegerField(primary_key=True)
     hashe = models.CharField(max_length=255, blank=True, null=True)
@@ -29,12 +26,3 @@ class Music(models.Model):
     class Meta:
         managed = False
         db_table = 'music'
-
-
-class History(models.Model):
-    id_video = models.CharField(max_length=255,blank=True,null=True)
-    id_user = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'history'

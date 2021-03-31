@@ -26,6 +26,9 @@ class MusicViewSet(APIView):
 
 class FingerprintsViewSet(APIView):
 
+    permission_classes = ()
+    authentication_classes = ()
+
     def post(self, request, *args, **kwargs):
         algo = fingerprints_generator.Algo()
         algo.choice("find", request.data['url'])
