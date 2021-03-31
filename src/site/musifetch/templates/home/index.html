@@ -16,7 +16,7 @@
 </head>
 <body class="full-page">
     <div class="container-fluid high-page">
-        {% if request.user|has_group:'contributor' %}
+        {% if request.user|has_group:'contributor' or request.user.is_superuser %}
             {% include 'home/navs/home/contributor.html' %}
         {% elif request.user.is_authenticated %}
             {% include 'home/navs/home/logged.html' %}
