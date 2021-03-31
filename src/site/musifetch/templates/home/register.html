@@ -31,17 +31,23 @@
                 <div class="container text-center pt-5">
                     <form action="/register/" method="POST" class="was-validated">
                         {% csrf_token %}
-                        <input id="email" name="email" class="input" type="text" value="{{ keep_email }}" placeholder="Email" style="margin-bottom: 30px;">
-                        <div class="invalid-feedback d-block">
-                            {{ email_error }}
+                        <div style="margin-bottom: 30px;">
+                            <input id="email" name="email" class="input" type="text" value="{{ keep_email }}" placeholder="Email">
+                            <div class="invalid-feedback d-block">
+                                {{ email_error }}
+                            </div>
                         </div>
-                        <input id="username" name="username" class="input" type="text" value="{{ keep_username }}" placeholder="Username" style="margin-bottom: 30px;">
-                        <div class="invalid-feedback d-block">
-                            {{ username_error }}
+                        <div style="margin-bottom: 30px;">
+                            <input id="username" name="username" class="input" type="text" value="{{ keep_username }}" placeholder="Username">
+                            <div class="invalid-feedback d-block">
+                                {{ username_error }}
+                            </div>
                         </div>
-                        <input id="password" name="password" class="input" type="password" placeholder="Password" style="margin-bottom: 30px;">
-                        <div class="invalid-feedback d-block">
-                            {{ password_error }}
+                        <div style="margin-bottom: 30px;">
+                            <input id="password" name="password" class="input" type="password" placeholder="Password">
+                            <div class="invalid-feedback d-block">
+                                {{ password_error }}
+                            </div>
                         </div>
                         <input id="confirm_password" name="confirm_password" class="input" type="password" placeholder="Confirm password">
                         <div class="invalid-feedback d-block">
