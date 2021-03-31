@@ -1,9 +1,5 @@
 @import url("style_base.css");
 
-body{
-	overflow-y: hidden;
-}
-
 .musifetch {
     background-color: var(--color-pink2);
     height: 750px;
