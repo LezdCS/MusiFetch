@@ -4,6 +4,11 @@
 	margin: 10px 0 10px;
 }
 
+.back-home {
+	font-size: 40px;
+	color: var(--color-pink1);
+}
+
 .user {
 	color: var(--color-pink1);
 	font-size: 20px;
