@@ -1,4 +1,6 @@
 # MusiFetch
+
+[PROJECT ARCHIVED, IT WAS A SCHOOL PROJECT, NOT KEEPING IT UP TO DATE ANYMORE] 
 Pour utiliser le programme il faut utiliser [docker](https://www.docker.com/)
 ```markdown
 # Build les images
